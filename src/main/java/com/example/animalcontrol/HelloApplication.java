@@ -6,6 +6,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class HelloApplication extends Application {
 
@@ -23,8 +24,10 @@ public class HelloApplication extends Application {
 
         //World myWorld = new World(5,3);
         myWorld = new World((int)hc.getCanvasheight()/TILE_SIZE,(int)hc.getCanvasWidth()/TILE_SIZE);
+
+
         myWorld.addActor(new wolf("pog", myWorld, 4,2));
-        myWorld.addActor(new BoxBug("700", myWorld, 4,4));
+        myWorld.addActor(new BoxBug("Test", myWorld, 4,4));
         myWorld.addActor(new FiveBug("700", myWorld, 18,18));
         myWorld.addActor(new grass("800", myWorld, 20,18));
         myWorld.addActor(new grass("900", myWorld, 11,18));
@@ -44,11 +47,12 @@ public class HelloApplication extends Application {
          animTimer = new AnimationTimer(){
              private long lastUpdate = 0;
             public void handle(long currentNanoTime){
-                if (currentNanoTime - lastUpdate >= 50_000_000)
-                myWorld.step();
-                myWorld.draw(hc.getGraphicContext());
-                lastUpdate = currentNanoTime;
-
+                //30_000_000
+                if (currentNanoTime - lastUpdate >= 700_000_000) {
+                    myWorld.step();
+                    myWorld.draw(hc.getGraphicContext());
+                    lastUpdate = currentNanoTime;
+                }
             }
         };
 

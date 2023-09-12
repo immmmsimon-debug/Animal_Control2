@@ -96,29 +96,34 @@ public class Location {
 
     public int getDirectionFour(Location destination) {
         Location myLoc = new Location(row, col);
+        int dir = 0;
 
         int rowDis = Math.abs(destination.getRow() - myLoc.getRow());
         int colDis = Math.abs(destination.getCol() - myLoc.getCol());
 
+        System.out.println("Distance from row: " + rowDis);
+        System.out.println("Distance from col: " + colDis);
+
         if (rowDis != 0) {
             if (rowDis > 0) {
-                return South;
+                dir = South;
             } else if (rowDis < 0) {
-                return North;
+                dir = North;
             }
         } else if (colDis != 0) {
             if (colDis > 0) {
-                return East;
+                dir = East;
             } else if (colDis < 0) {
-                return West;
+                dir = West;
             }
         }
-        return North;
+        return dir;
     }
 
 
     public int getDirectionEight(Location destination) {
         Location myLoc = new Location(row, col);
+        int dir = 0;
 
         int rowDis = Math.abs(destination.getRow() - myLoc.getRow());
         int colDis = Math.abs(destination.getCol() - myLoc.getCol());
@@ -131,24 +136,24 @@ public class Location {
             if(destination.getCol() > myLoc.getCol()){
                 //when the target is below the object
                 if(destination.getRow() > myLoc.getRow()){
-                    return SouthEast;
+                    dir = SouthEast;
                 }
                 else {//when target is above the object
-                    return NorthEast;
+                    dir = NorthEast;
                 }
             }
             else {
                 if (destination.getRow() > myLoc.getRow()) {
                     return SouthWest;
                 } else {//when target is above the object
-                    return NorthWest;
+                    dir = NorthWest;
                 }
             }
 
         }else{
             getDirectionFour(destination);
         }
-        return North;
+        return dir;
     }
 
 

@@ -8,11 +8,13 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FilterInputStream;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class World {
     Actor World[][];
     Image defaultTile;
+    ArrayList<Actor> masterArray = new ArrayList<>();
 
 
     public World(int numRows,int numCols){
@@ -139,6 +141,22 @@ public class World {
         }
             return null;
     }
+    public ArrayList<Actor> getActortype(String name){
+        ArrayList<Actor> ans = new ArrayList<>();
+
+        for(int i = 0; i<masterArray.size(); i++){
+            String n = masterArray.get(i).getClass().toString();
+            if(n.contains(name)){
+                ans.add(masterArray.get(i));
+
+            }
+        }
+        return ans;
+    }
+
+
+
+
    /* public Actor getRandom(String className){
         ArrayList<Actor> actors = getAllActorOfType(className);
         if(actors.size() == 0){
@@ -153,16 +171,34 @@ public class World {
         if(isValid(loc)){
             Actor a = World[loc.getRow()][loc.getCol()];
             World[loc.getRow()][loc.getCol()] = null;
-
+            masterArray.remove(a);
         }//end if
     }//end clearLoc
-    public boolean addActor( Actor a){
+
+    public ArrayList<Actor> getMasterArray() {
+        return masterArray;
+    }
+
+
+    public boolean addActor(Actor a){
         if(World[a.getMyLoc().getRow()][a.getMyLoc().getCol()] != null){
             return false;
         }
 
         World[a.getMyLoc().getRow()][a.getMyLoc().getCol()] = a;
+        masterArray.add(a);
         return true;
+
+
+    }
+
+    @Override
+    public String toString() {
+        return "World{" +
+                "World=" + Arrays.toString(World) +
+                ", defaultTile=" + defaultTile +
+                ", masterArray=" + masterArray +
+                '}';
     }
     //return a new location in the given direction from the give loc
     //return null, if there is no valid location in that direction

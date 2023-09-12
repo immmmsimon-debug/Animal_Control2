@@ -4,6 +4,7 @@ import javafx.scene.image.Image;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
 
 public class BoxBug extends Actor {
     int counter = 0 ;
@@ -16,7 +17,18 @@ public class BoxBug extends Actor {
     public void act(){
 
         Location nextLoc= getMyLoc().getLocInDirection(getDir());
-        
+        int testDir = getMyLoc().getDirectionEight(nextLoc);
+        ArrayList<Actor> testLoc = new ArrayList<>();
+        testLoc = getMyWorld().getActortype("grass");
+        System.out.println("My name: " + getName());
+        System.out.println("Current dir: " + getDir());
+        System.out.println("testDir in act: " + testDir);
+        System.out.println("-----------------------\n");
+        System.out.println("Master Array: " + getMyWorld().getMasterArray());
+        System.out.println("All Actor type: " + getMyWorld().getActortype("grass"));
+
+
+
 
         if(getMyWorld().isValid((nextLoc))&& getMyWorld().getActor(nextLoc) == null){
 

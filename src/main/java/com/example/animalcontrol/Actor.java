@@ -28,6 +28,12 @@ public class Actor {
         image = new Image(new FileInputStream("C:\\Users\\KVo24\\IdeaProjects\\Animal Control\\src\\main\\resources\\happyface.png"));
         myLoc = new Location(0,0);
     }
+    public Actor() throws FileNotFoundException {
+        this.name = null;
+        this.myWorld = null;
+        image = new Image(new FileInputStream("C:\\Users\\KVo24\\IdeaProjects\\Animal Control\\src\\main\\resources\\happyface.png"));
+        myLoc = new Location(0,0);
+    }
     public Actor(String name, World myWorld, int row, int col) throws FileNotFoundException{
         this.name = name;
         this.myWorld = myWorld;
@@ -141,6 +147,11 @@ public class Actor {
 
     public void setMyWorld(World myWorld) {
         this.myWorld = myWorld;
+    }
+
+    @Override
+    public String toString() {
+        return getName();
     }
 }
 
