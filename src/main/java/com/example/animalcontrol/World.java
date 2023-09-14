@@ -2,14 +2,11 @@ package com.example.animalcontrol;
 
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
-import javafx.scene.layout.TilePane;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.FilterInputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
 public class World {
     Actor World[][];
@@ -50,29 +47,35 @@ public class World {
         return loc.getRow() >= 0 && loc.getRow() < World.length && loc.getCol() >= 0 && loc.getCol() < World[(loc.getRow())].length;
     }
 
-    public Actor getNearest(Actor a){
-        return null;
-    }
+    public Actor getNearest(Actor a, String className){
+        ArrayList<Actor> avaliableActor = getActortype(className);
+        ArrayList<Location> nearestActor = getAllActorLoc(className);
+        double minDis = 10000;
+        double row = 0; double col = 0;
+        double myRow = a.getMyLoc().getRow(); double myCol = a.getMyLoc().getCol();
+        double disBeforeSquareRoot=0; double disAfterSquareRoot = 0;
+        int where = 0;
 
-   /* private ArrayList<Actor> getAllActorOfType(String className){
-        ArrayList<Actor> allActorType = new ArrayList<>();
-        Location current = new Location(0,0);
 
-        for(int row=0; row<World.length; row++ ){
-            for(int col=0; col<World[row].length; col++){
-                if(World[row][col] != null){
-                    current.setCol(row);
-                    current.setRow(col);
-                    if(getActor(current).getName().equals(className)){
-                        allActorType.add(getActor(current));
-                    }
-                }
+        for(int i=0; i < nearestActor.size(); i++){
+            row = nearestActor.get(i).getRow();
+            col = nearestActor.get(i).getCol();
+            disBeforeSquareRoot = Math.pow(myRow-row,2)+Math.pow(myCol-col,2);
+            disAfterSquareRoot = Math.sqrt(disBeforeSquareRoot);
+
+
+
+            if(disAfterSquareRoot<minDis) {
+               minDis = disAfterSquareRoot;;
+               where = i;
             }
         }
-        return allActorType;
+
+
+        return avaliableActor.get(where);
     }
 
-    */
+
     public void step(){
        for(int row = 0; row < World.length; row++){
            for(int col = 0; col < World[row].length;col++){
@@ -154,11 +157,22 @@ public class World {
         return ans;
     }
 
+    public ArrayList<Location> getAllActorLoc(String name){
+        ArrayList<Actor> ans = new ArrayList<>();
+        ArrayList<Location> loc = new ArrayList<>();
+        ans = getActortype(name);
+        for (int i=0; i< ans.size(); i++){
+            loc.add(ans.get(i).getMyLoc());
+        }
+        return loc;
+
+    }
 
 
 
-   /* public Actor getRandom(String className){
-        ArrayList<Actor> actors = getAllActorOfType(className);
+
+    public Actor getRandom(String className){
+        ArrayList<Actor> actors = getActortype(className);
         if(actors.size() == 0){
             return null;
         }
@@ -166,7 +180,7 @@ public class World {
     }
 
 
-    */
+
     public void clearLoc(Location loc){
         if(isValid(loc)){
             Actor a = World[loc.getRow()][loc.getCol()];

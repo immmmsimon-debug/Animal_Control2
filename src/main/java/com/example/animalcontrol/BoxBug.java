@@ -26,6 +26,13 @@ public class BoxBug extends Actor {
         System.out.println("-----------------------\n");
         System.out.println("Master Array: " + getMyWorld().getMasterArray());
         System.out.println("All Actor type: " + getMyWorld().getActortype("grass"));
+        System.out.println("All Actor Location: " + getMyWorld().getAllActorLoc("grass"));
+        System.out.println("-----------------------\n");
+        System.out.println("Clost Actor Type: " + getMyWorld().getNearest(this, "grass"));
+        System.out.println("-----------------------\n");
+        System.out.println("New Cycle");
+        System.out.println("///////////////////////////\n");
+
 
 
 
