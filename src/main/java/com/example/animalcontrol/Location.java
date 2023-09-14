@@ -91,7 +91,13 @@ public class Location {
     //         -> false, method returns direction using 4 naughticol
 
     public int getDirectionToLoc(Location destination, boolean eightWay){
-        return North;
+        Location myLoc = new Location(row, col);
+        if(eightWay == false){
+            return getDirectionFour(destination);
+        }
+        else{
+            return getDirectionEight(destination);
+        }
     }
 
     public int getDirectionFour(Location destination) {
