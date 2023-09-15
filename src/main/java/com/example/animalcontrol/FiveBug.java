@@ -44,9 +44,10 @@ public class FiveBug extends BoxBug {
 
 
 
+
         getMyWorld().clearLoc(getMyLoc());
-        if(getMyWorld().isValid(newLoc) ==false){
-            getMyWorld().clearLoc(getMyLoc().getDirectionToLoc(getMyWorld().getNearest(this, "grass")));
+        if(getMyWorld().isValid(newLoc) && getMyWorld().getActor(newLoc) != null ){
+            getMyWorld().clearLoc(getMyWorld().getNearest(this, "grass").getMyLoc());
             setMyLoc(newLoc);
         }
             setMyLoc(newLoc);

@@ -26,7 +26,7 @@ public class HelloApplication extends Application {
         myWorld = new World((int)hc.getCanvasheight()/TILE_SIZE,(int)hc.getCanvasWidth()/TILE_SIZE);
 
 
-        myWorld.addActor(new wolf("pog", myWorld, 4,2));
+        //myWorld.addActor(new wolf("pog", myWorld, 4,2));
         myWorld.addActor(new FiveBug("Test", myWorld, 5,20));
         myWorld.addActor(new grass("20,18", myWorld, 20,18));
         myWorld.addActor(new grass("2,2", myWorld, 2,2));

@@ -76,6 +76,8 @@ public class World {
     }
 
 
+
+
     public void step(){
        for(int row = 0; row < World.length; row++){
            for(int col = 0; col < World[row].length;col++){
