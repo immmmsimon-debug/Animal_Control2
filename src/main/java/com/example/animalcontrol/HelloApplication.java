@@ -27,7 +27,7 @@ public class HelloApplication extends Application {
 
 
         myWorld.addActor(new wolf("pog", myWorld, 4,2));
-        myWorld.addActor(new BoxBug("Test", myWorld, 4,4));
+        myWorld.addActor(new FiveBug("Test", myWorld, 5,20));
         myWorld.addActor(new grass("20,18", myWorld, 20,18));
         myWorld.addActor(new grass("2,2", myWorld, 2,2));
         myWorld.addActor(new grass("15,30", myWorld, 15,30));
@@ -47,7 +47,7 @@ public class HelloApplication extends Application {
              private long lastUpdate = 0;
             public void handle(long currentNanoTime){
                 //30_000_000
-                if (currentNanoTime - lastUpdate >= 700_000_000) {
+                if (currentNanoTime - lastUpdate >= 1000_000_000) {
                     myWorld.step();
                     myWorld.draw(hc.getGraphicContext());
                     lastUpdate = currentNanoTime;

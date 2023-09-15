@@ -104,12 +104,39 @@ public class Location {
         Location myLoc = new Location(row, col);
         int dir = 0;
 
-        int rowDis = Math.abs(destination.getRow() - myLoc.getRow());
-        int colDis = Math.abs(destination.getCol() - myLoc.getCol());
+        int rowDis = destination.getRow() - myLoc.getRow();
+        int colDis = destination.getCol() - myLoc.getCol();
 
         System.out.println("Distance from row: " + rowDis);
         System.out.println("Distance from col: " + colDis);
 
+        if(Math.abs(rowDis)>Math.abs(colDis)) {
+            if (rowDis > 0) {
+                dir = 4;
+            }else
+                dir=0;
+        }else {
+            if(colDis>0){
+                dir=2;
+            }else
+                dir=6;
+        }
+
+        if(rowDis==0){
+            if(colDis>0){
+                dir=2;
+            }else
+                dir=6;
+        }
+        if(colDis==0){
+            if(rowDis>0){
+                dir=4;
+            }else
+                dir=0;
+        }
+        return dir;
+    }
+/*
         if (rowDis != 0) {
             if (rowDis > 0) {
                 dir = South;
@@ -126,17 +153,43 @@ public class Location {
         return dir;
     }
 
+ */
+
 
     public int getDirectionEight(Location destination) {
         Location myLoc = new Location(row, col);
-        int dir = 0;
+        int dir =0;
 
-        int rowDis = Math.abs(destination.getRow() - myLoc.getRow());
-        int colDis = Math.abs(destination.getCol() - myLoc.getCol());
+        int rowDis = destination.getRow() - myLoc.getRow();
+        int colDis = destination.getCol() - myLoc.getCol();
+        double row = 0;
+        double col = 0;
+        System.out.println("Distance from row: " + rowDis);
+        System.out.println("Distance from col: " + colDis);
+
+         if(rowDis!=0 && colDis!=0){
+             if(rowDis<0 && colDis>0){
+                 dir=1;
+             }
+             else if(rowDis>0 && colDis >0){
+                 dir=3;
+             }
+             else if(rowDis>0 && colDis<0){
+                 dir=5;
+             }
+             else if(rowDis<0 && colDis<0){
+                 dir=7;
+             }
+         }else {
+            dir=getDirectionFour(destination);
+         }
+
+        return dir;
+    }
 
 
 
-
+/*
         if(rowDis == colDis && colDis != 0 && rowDis !=0){
             //when the destination is to the right of the object
             if(destination.getCol() > myLoc.getCol()){
@@ -160,7 +213,11 @@ public class Location {
             getDirectionFour(destination);
         }
         return dir;
-    }
+
+ */
+
+
+
 
 
     @Override

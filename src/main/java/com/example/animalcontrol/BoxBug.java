@@ -30,9 +30,9 @@ public class BoxBug extends Actor {
         System.out.println("-----------------------\n");
         System.out.println("Clost Actor Type: " + getMyWorld().getNearest(this, "grass"));
         System.out.println("-----------------------\n");
-        System.out.println("Direction to closest actor type: " + getMyLoc().getDirectionToLoc(getMyWorld().getNearest(this, "grass").));
+        System.out.println("Direction to closest actor type: " + getMyLoc().getDirectionToLoc(getMyWorld().getNearest(this, "grass").getMyLoc(), true));
         System.out.println("New Cycle");
-        System.out.println("///////////////////////////\n");
+        System.out.println("------------------------\n");
 
 
 
